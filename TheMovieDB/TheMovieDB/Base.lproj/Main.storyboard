@@ -31,13 +31,27 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cell" id="W2N-fF-1b8">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cell" id="W2N-fF-1b8" customClass="CollectionViewCell" customModule="TheMovieDB" customModuleProvider="target">
                                         <rect key="frame" x="2" y="0.0" width="371" height="342"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                                             <rect key="frame" x="0.0" y="0.0" width="371" height="342"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="N4M-wa-EIn">
+                                                    <rect key="frame" x="0.0" y="0.0" width="371" height="342"/>
+                                                </imageView>
+                                            </subviews>
                                         </view>
+                                        <constraints>
+                                            <constraint firstItem="N4M-wa-EIn" firstAttribute="leading" secondItem="W2N-fF-1b8" secondAttribute="leading" id="ARM-ZE-0Th"/>
+                                            <constraint firstAttribute="trailing" secondItem="N4M-wa-EIn" secondAttribute="trailing" id="D9W-4u-Omp"/>
+                                            <constraint firstItem="N4M-wa-EIn" firstAttribute="top" secondItem="W2N-fF-1b8" secondAttribute="top" id="Rcf-mZ-pTE"/>
+                                            <constraint firstAttribute="bottom" secondItem="N4M-wa-EIn" secondAttribute="bottom" id="cG5-RY-QI4"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="movieImage" destination="N4M-wa-EIn" id="v1q-uz-EG7"/>
+                                        </connections>
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
@@ -45,16 +59,23 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="kaM-2u-ur0" secondAttribute="trailing" id="53d-aV-Z88"/>
+                            <constraint firstItem="kaM-2u-ur0" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="7oH-Wa-LC6"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="kaM-2u-ur0" secondAttribute="bottom" id="ES2-4D-NtS"/>
+                            <constraint firstAttribute="trailing" secondItem="kaM-2u-ur0" secondAttribute="trailing" id="Mtm-Ju-asO"/>
+                            <constraint firstItem="kaM-2u-ur0" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="bQ0-9H-gTQ"/>
                             <constraint firstItem="kaM-2u-ur0" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="mV3-Su-dhe"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="kaM-2u-ur0" secondAttribute="bottom" id="nUP-0V-CAU"/>
                             <constraint firstItem="kaM-2u-ur0" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="sBc-jc-bdY"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Home" id="a2B-2b-Imu"/>
+                    <connections>
+                        <outlet property="collectionView" destination="kaM-2u-ur0" id="2GX-W1-RDO"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="69.599999999999994" y="38.423645320197046"/>
+            <point key="canvasLocation" x="-298" y="18"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="dwB-HP-iuF">
@@ -72,7 +93,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wVV-tM-OrL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-618" y="42"/>
+            <point key="canvasLocation" x="-946" y="18"/>
         </scene>
     </scenes>
 </document>
