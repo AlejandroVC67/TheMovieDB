@@ -12,7 +12,6 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     @IBOutlet weak var collectionView: UICollectionView!
     static let kURL = "https://api.themoviedb.org/3/movie/top_rated?api_key=1f4d7de5836b788bdfd897c3e0d0a24b&language=en-US&page=1"
     static let kResults = "results"
-    var movies: [[String: Any]] = [[String: Any]]()
     var moviesImages: [UIImage] = []
     
     override func viewDidLoad() {
@@ -22,10 +21,10 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         
         Alamofire.request(ViewController.kURL).responseJSON { response in
             if let responseJSON = response.result.value {
-                let dataResults = responseJSON as! [String: Any]                 //what's the difference between let data: Dictionary = responseJSON as! Dictionary<String, Any>
-                let moviesData = dataResults[ViewController.kResults] as! [[String: Any]]
-                self.movies = moviesData
-                self.loadImages()
+                let dataResults = responseJSON as! [String: Any]
+                let data = TopRated(json: dataResults)
+                // print(data.results[3].overview)
+                // self.loadImages()
             }
         }
     }
@@ -34,7 +33,8 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+ 
+    /*
     func loadImages() {
         let kImageURL = "https://image.tmdb.org/t/p/w500"
         for movie in self.movies {
@@ -42,9 +42,9 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
             let imageUrl = URL(string: kImageURL + String(describing: movie["poster_path"]!))!
             let imageData = try! Data(contentsOf: imageUrl)
             self.moviesImages.append(UIImage(data: imageData)!)
-            collectionView.reloadData()
         }
-    }
+        collectionView.reloadData()
+    } */
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.moviesImages.count
