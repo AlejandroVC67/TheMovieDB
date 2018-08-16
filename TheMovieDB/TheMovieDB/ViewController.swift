@@ -10,22 +10,14 @@ import UIKit
 import Alamofire
 class ViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     @IBOutlet weak var collectionView: UICollectionView!
-    static let kURL = "https://api.themoviedb.org/3/movie/top_rated?api_key=1f4d7de5836b788bdfd897c3e0d0a24b&language=en-US&page=1"
-    static let kResults = "results"
     var moviesImages: [UIImage] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionView.delegate = self
         collectionView.dataSource = self
-        
-        Alamofire.request(ViewController.kURL).responseJSON { response in
-            if let responseJSON = response.result.value {
-                let dataResults = responseJSON as! [String: Any]
-                let data = TopRated(json: dataResults)
-                // print(data.results[3].overview)
-                // self.loadImages()
-            }
+        MovieDBFacade.RetrieveTopRated() { response in
+            print(response)
         }
     }
 
