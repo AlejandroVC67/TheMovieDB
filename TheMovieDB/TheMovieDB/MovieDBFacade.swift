@@ -8,12 +8,14 @@
 
 import Foundation
 import Alamofire
-
+import AlamofireImage
 class MovieDBFacade {
-    static let kURL = "https://api.themoviedb.org/3/movie/top_rated?api_key=1f4d7de5836b788bdfd897c3e0d0a24b&language=en-US&page=1"
-    static let kResults = "results"
-    static func RetrieveTopRated (completion: @escaping (TopRated) -> Void) {
-        Alamofire.request(MovieDBFacade.kURL).validate(statusCode: 200..<500).responseJSON { response in
+    static private let kURL = "https://api.themoviedb.org/3/movie/top_rated?api_key=1f4d7de5836b788bdfd897c3e0d0a24b&language=en-US&page=1"
+    static private let kResults = "results"
+    static private let kImagesURL = "https://image.tmdb.org/t/p/w500"
+    
+    static func retrieveTopRated (completion: @escaping (TopRated) -> Void) {
+        Alamofire.request(MovieDBFacade.kURL).validate(statusCode: 200..<300).responseJSON { response in
             switch response.result {
                 case .success:
                     if let responseJSON = response.result.value {
@@ -28,6 +30,17 @@ class MovieDBFacade {
 
         }
     }
+    
+    static func downloadImages (kImageURL: URL, completion: @escaping (UIImage) -> Void ) {
+        Alamofire.request(kImageURL).responseImage { response in
+            if let image = response.result.value {
+                completion(image)
+            } else {
+                print("Couldn't get image")
+            }
+        }
+    }
+    
 }
 
 

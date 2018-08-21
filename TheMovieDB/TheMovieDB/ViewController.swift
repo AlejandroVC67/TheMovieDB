@@ -10,14 +10,16 @@ import UIKit
 import Alamofire
 class ViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     @IBOutlet weak var collectionView: UICollectionView!
+    static private let kImageURL = "https://image.tmdb.org/t/p/w500"
     var moviesImages: [UIImage] = []
-    
+    var movies: [Movie] = []
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionView.delegate = self
         collectionView.dataSource = self
-        MovieDBFacade.RetrieveTopRated() { response in
-            print(response)
+        MovieDBFacade.retrieveTopRated { [weak self] response in
+            self?.movies = response.results
+            self?.loadImages()
         }
     }
 
@@ -26,17 +28,15 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         // Dispose of any resources that can be recreated.
     }
  
-    /*
     func loadImages() {
-        let kImageURL = "https://image.tmdb.org/t/p/w500"
         for movie in self.movies {
-            // print(movie["poster_path"]!)
-            let imageUrl = URL(string: kImageURL + String(describing: movie["poster_path"]!))!
-            let imageData = try! Data(contentsOf: imageUrl)
-            self.moviesImages.append(UIImage(data: imageData)!)
+            let imageUrl = URL(string: ViewController.kImageURL + movie.poster_path)!
+            MovieDBFacade.downloadImages(kImageURL: imageUrl) { response in
+                self.moviesImages.append(response)
+                self.collectionView.reloadData()
+            }
         }
-        collectionView.reloadData()
-    } */
+    }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.moviesImages.count

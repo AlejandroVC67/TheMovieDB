@@ -37,10 +37,11 @@ struct TopRated {
         self.total_results = json["total_results"] as? Int ?? 0
         self.total_pages = json["total_pages"] as? Int ?? 0
         if let results = json["results"] as? [[String: Any]] {
-            for eachMovie in results {
-                let movie = Movie(json: (eachMovie))
-                movies.append(movie)
-            }
+            movies = results.map(Movie.init(json: ))
+//            for eachMovie in results {
+//                let movie = Movie(json: (eachMovie))
+//                movies.append(movie)
+//            }
             
         }
         self.results = movies
