@@ -8,10 +8,9 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class MovieCollectionViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     static private let kImageURL = "https://image.tmdb.org/t/p/w500"
-    var moviesImages: [UIImage] = []
     var movies: [Movie] = []
     
     override func viewDidLoad() {
@@ -20,7 +19,7 @@ class ViewController: UIViewController {
         collectionView.dataSource = self
         MovieDBFacade.retrieveTopRated { [weak self] response in
             self?.movies = response.results
-            self?.loadImages()
+            self?.collectionView.reloadData()
         }
     }
 
@@ -28,26 +27,18 @@ class ViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
- 
-    func loadImages() {
-        for movie in self.movies {
-            let imageUrl = URL(string: ViewController.kImageURL + movie.poster_path)!
-            MovieDBFacade.downloadImages(kImageURL: imageUrl) { response in
-                self.moviesImages.append(response)
-                self.collectionView.reloadData()
-            }
-        }
-    }
 }
 
-extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+extension MovieCollectionViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.moviesImages.count
+        return self.movies.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CollectionViewCell
-        cell.movieImage.image = self.moviesImages[indexPath.item]
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! MovieCollectionViewCell
+        if let imageURL = URL(string: MovieCollectionViewController.kImageURL + movies[indexPath.item].poster_path) {
+            cell.movieImage.af_setImage(withURL: imageURL) //set image automatically when download compelete.
+        }
         return cell
     }
 }

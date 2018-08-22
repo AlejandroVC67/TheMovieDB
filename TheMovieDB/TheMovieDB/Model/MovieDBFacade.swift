@@ -31,15 +31,15 @@ class MovieDBFacade {
         }
     }
     
-    static func downloadImages (kImageURL: URL, completion: @escaping (UIImage) -> Void ) {
-        Alamofire.request(kImageURL).responseImage { response in
-            if let image = response.result.value {
-                completion(image)
-            } else {
-                print("Couldn't get image")
-            }
-        }
-    }
+//    static func downloadImages (kImageURL: URL, completion: @escaping (UIImage) -> Void ) {
+//        Alamofire.request(kImageURL).responseImage { response in
+//            if let image = response.result.value {
+//                completion(image)
+//            } else {
+//                print("Couldn't get image")
+//            }
+//        }
+//    }
     
 }
 

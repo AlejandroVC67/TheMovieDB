@@ -8,10 +8,9 @@
 
 import UIKit
 
-class ViewController2: UIViewController {
+class MovieTableViewController: UIViewController {
     
     static private let kImageURL = "https://image.tmdb.org/t/p/w500"
-    var moviesImages: [UIImage] = []
     var movies: [Movie] = []
     @IBOutlet weak var movieTableView: UITableView!
     
@@ -21,7 +20,7 @@ class ViewController2: UIViewController {
         movieTableView.dataSource = self
         MovieDBFacade.retrieveTopRated { [weak self] response in
             self?.movies = response.results
-            self?.loadImages()
+            self?.movieTableView.reloadData()
         }
     }
     
@@ -30,27 +29,20 @@ class ViewController2: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func loadImages() {
-        for movie in self.movies {
-            let imageUrl = URL(string: ViewController2.kImageURL + movie.poster_path)!
-            MovieDBFacade.downloadImages(kImageURL: imageUrl) { response in
-                self.moviesImages.append(response)
-                self.movieTableView.reloadData()
-            }
-        }
-    }
 }
 
-extension ViewController2: UITableViewDelegate, UITableViewDataSource {
+extension MovieTableViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return moviesImages.count
+        return movies.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! MovieTableViewCell
-        cell.movieImageView.image = self.moviesImages[indexPath.item]
-        // cell.movieLabel.text = self.movies[indexPath.item].title Need to fix the order of the array so the label gets the right title for the movie
+        if let imageURL = URL(string: MovieTableViewController.kImageURL + movies[indexPath.item].poster_path) {
+            cell.movieImageView.af_setImage(withURL: imageURL) //set image automatically when download compelete.
+            cell.movieLabel.text = movies[indexPath.item].title
+        }
         return cell
     }
 }
