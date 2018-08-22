@@ -7,12 +7,13 @@
 //
 
 import UIKit
-import Alamofire
-class ViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+
+class ViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     static private let kImageURL = "https://image.tmdb.org/t/p/w500"
     var moviesImages: [UIImage] = []
     var movies: [Movie] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionView.delegate = self
@@ -37,7 +38,9 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
             }
         }
     }
-    
+}
+
+extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.moviesImages.count
     }
@@ -47,6 +50,4 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         cell.movieImage.image = self.moviesImages[indexPath.item]
         return cell
     }
-    
 }
-
