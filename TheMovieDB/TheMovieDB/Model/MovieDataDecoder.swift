@@ -12,7 +12,7 @@ struct Movie {
     let vote_average: Double
     let title: String
     let popularity: Double
-    let poster_path: String
+    let poster_path: String!
     let overview: String
     let release_date: String
     
@@ -20,7 +20,7 @@ struct Movie {
         self.vote_average = json["vote_average"] as? Double ?? 0.0
         self.title = json["title"] as? String ?? ""
         self.popularity = json["popularity"] as? Double ?? 0.0
-        self.poster_path = json["poster_path"] as? String ?? ""
+        self.poster_path = "https://image.tmdb.org/t/p/w500" + String(describing: json["poster_path"]!)
         self.overview = json["overview"] as? String ?? ""
         self.release_date = json["release_date"] as? String ?? ""
     }
