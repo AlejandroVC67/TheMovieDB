@@ -15,7 +15,15 @@ class InitialViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.list = TableMovieList()
+        
+        if UIDevice.current.userInterfaceIdiom == .pad { //   UIDevice.current.userInterfaceIdiom == .pad
+            let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+            layout.sectionInset = UIEdgeInsetsMake(10, 10, 10, 10)
+            layout.itemSize = CGSize(width: 220, height:330)
+            self.list = CollectionMovieList(layout: layout)
+        } else {
+            self.list = TableMovieList()
+        }
         self.list.movieDelegate = self
         self.view.addSubview((self.list as! UIView))
         MovieDBFacade.retrieveTopRated { [weak self] response in
@@ -44,7 +52,6 @@ class InitialViewController: UIViewController {
 }
 
 extension InitialViewController: MovieListDelegate {
-    
     func numberOfItems() -> Int {
         return movies.count
     }
@@ -55,4 +62,10 @@ extension InitialViewController: MovieListDelegate {
             cell.movieLabel?.text = movies[atIndexPath.item].title
         }
     }
+    func chooseACell(atIndexPath: IndexPath) {
+        let detailViewController = storyboard?.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
+        detailViewController.movie = movies[atIndexPath.item]
+        self.navigationController!.pushViewController(detailViewController, animated: false)
+    }
+    
 }

@@ -15,6 +15,7 @@ class TableMovieList: UITableView, MovieList {
     init() {
         super.init(frame: CGRect.zero, style: .plain)
         self.dataSource = self
+        self.delegate = self
         self.register(UINib(nibName: "TableViewCell", bundle: nil), forCellReuseIdentifier: "TableViewCell")
     }
     
@@ -23,7 +24,7 @@ class TableMovieList: UITableView, MovieList {
     }
 }
 
-extension TableMovieList: UITableViewDataSource {
+extension TableMovieList: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return (movieDelegate?.numberOfItems())!
     }
@@ -32,6 +33,10 @@ extension TableMovieList: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TableViewCell", for: indexPath) as! ListCell
         movieDelegate?.configure(cell: cell, atIndexPath: indexPath)
         return cell as! UITableViewCell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        movieDelegate?.chooseACell(atIndexPath: indexPath)
     }
 }
 

@@ -12,6 +12,7 @@ import UIKit
 protocol MovieListDelegate: class {
     func numberOfItems() -> Int
     func configure(cell: ListCell, atIndexPath: IndexPath)
+    func chooseACell(atIndexPath: IndexPath)
 }
 
 
