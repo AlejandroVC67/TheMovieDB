@@ -18,8 +18,8 @@ class InitialViewController: UIViewController {
         
         if UIDevice.current.userInterfaceIdiom == .pad { //   UIDevice.current.userInterfaceIdiom == .pad
             let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-            layout.sectionInset = UIEdgeInsetsMake(10, 10, 10, 10)
-            layout.itemSize = CGSize(width: 220, height:330)
+            layout.sectionInset = UIEdgeInsetsMake(10, 1, 10, 1)
+            layout.itemSize = CGSize(width: 245, height:340)
             self.list = CollectionMovieList(layout: layout)
         } else {
             self.list = TableMovieList()
@@ -36,6 +36,7 @@ class InitialViewController: UIViewController {
         (self.list as! UIView).frame = self.view.bounds
     }
     
+    /*
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         // UITableView only moves in one direction, y axis
         let currentOffset = scrollView.contentOffset.y
@@ -48,10 +49,10 @@ class InitialViewController: UIViewController {
                 self?.list.reloadData()
             }
         }
-    }
+    } */
 }
 
-extension InitialViewController: MovieListDelegate {
+extension InitialViewController: MovieListDelegate {    
     func numberOfItems() -> Int {
         return movies.count
     }
