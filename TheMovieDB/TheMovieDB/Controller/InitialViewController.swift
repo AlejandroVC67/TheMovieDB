@@ -35,7 +35,6 @@ class InitialViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         (self.list as! UIView).frame = self.view.bounds
     }
-    
     /*
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         // UITableView only moves in one direction, y axis
@@ -52,7 +51,14 @@ class InitialViewController: UIViewController {
     } */
 }
 
-extension InitialViewController: MovieListDelegate {    
+extension InitialViewController: MovieListDelegate {
+    func scroll() {
+        MovieDBFacade.retrieveTopRated { [weak self] response in
+            self?.movies.append(contentsOf: response.results)
+            self?.list.reloadData()
+        }
+    }
+    
     func numberOfItems() -> Int {
         return movies.count
     }
