@@ -11,7 +11,6 @@ import Alamofire
 import AlamofireImage
 
 class MovieDBFacade {
-    // static private let kURL = "https://api.themoviedb.org/3/movie/top_rated?api_key=1f4d7de5836b788bdfd897c3e0d0a24b&language=en-US&page=1"
     static var currentPage = 0
     static private let kResults = "results"
     static private let kImagesURL = "https://image.tmdb.org/t/p/w500"
@@ -32,7 +31,6 @@ class MovieDBFacade {
                 case .failure(let error):
                     print(error)
             }
-
         }
     }
 }

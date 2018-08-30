@@ -12,6 +12,5 @@ import UIKit
 protocol MovieList: class {
     weak var movieDelegate: MovieListDelegate? { get set }
     func reloadData()
-    // func chooseACell(image: UIImageView!, title: String, overview: String, release: String, popularity: String, atIndexPath: IndexPath)
 }
 

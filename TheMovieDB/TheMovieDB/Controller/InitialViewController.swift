@@ -16,7 +16,7 @@ class InitialViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if UIDevice.current.userInterfaceIdiom == .pad { //   UIDevice.current.userInterfaceIdiom == .pad
+        if UIDevice.current.userInterfaceIdiom == .pad {
             let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
             layout.sectionInset = UIEdgeInsetsMake(10, 1, 10, 1)
             layout.itemSize = CGSize(width: 245, height:340)
