@@ -13,6 +13,7 @@ struct Movie {
     let title: String
     let popularity: Double
     let poster_path: String!
+    let backdrop_path: String!
     let overview: String
     let release_date: String
     
@@ -21,6 +22,7 @@ struct Movie {
         self.title = json["title"] as? String ?? ""
         self.popularity = json["popularity"] as? Double ?? 0.0
         self.poster_path = "https://image.tmdb.org/t/p/w500" + String(describing: json["poster_path"]!)
+        self.backdrop_path = "https://image.tmdb.org/t/p/w500" + String(describing: json["backdrop_path"]!)
         self.overview = json["overview"] as? String ?? ""
         self.release_date = json["release_date"] as? String ?? ""
     }

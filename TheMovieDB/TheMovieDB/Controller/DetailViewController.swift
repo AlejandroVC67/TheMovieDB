@@ -21,7 +21,7 @@ class DetailViewController: UIViewController {
         super.viewDidLoad()
         self.title = movie?.title
         movieTitleLabel.text = movie?.title
-        movieImage.af_setImage(withURL: URL(string: (movie?.poster_path)!)!)
+        movieImage.af_setImage(withURL: URL(string: (movie?.backdrop_path)!)!)
         moviePopularityLabel.text = "Popularity: \(movie?.popularity ?? 00)"
         movieReleaseLabel.text = "Release date: \(movie?.release_date ?? "Not Available")"
         movieOverviewLabel.text = "\(movie?.overview ?? "Not Available")"
