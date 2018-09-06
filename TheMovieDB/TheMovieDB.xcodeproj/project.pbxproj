@@ -12,6 +12,7 @@
 		160B50702130AD5D000F09C5 /* TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 160B506E2130AD5D000F09C5 /* TableViewCell.xib */; };
 		160B50722130B0E3000F09C5 /* ListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 160B50712130B0E3000F09C5 /* ListCell.swift */; };
 		160B50742130B11E000F09C5 /* MovieList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 160B50732130B11E000F09C5 /* MovieList.swift */; };
+		16791E16213ED07F00DCE188 /* DetailViewController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16791E15213ED07F00DCE188 /* DetailViewController2.swift */; };
 		169FB2BA2124B3DE006D09BA /* MovieDataDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 169FB2B92124B3DE006D09BA /* MovieDataDecoder.swift */; };
 		16A13C622125BB8800267875 /* MovieDBFacade.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16A13C612125BB8800267875 /* MovieDBFacade.swift */; };
 		16AA2D05212F1B660083B430 /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16AA2D04212F1B660083B430 /* InitialViewController.swift */; };
@@ -45,6 +46,7 @@
 		160B506E2130AD5D000F09C5 /* TableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TableViewCell.xib; sourceTree = "<group>"; };
 		160B50712130B0E3000F09C5 /* ListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCell.swift; sourceTree = "<group>"; };
 		160B50732130B11E000F09C5 /* MovieList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieList.swift; sourceTree = "<group>"; };
+		16791E15213ED07F00DCE188 /* DetailViewController2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController2.swift; sourceTree = "<group>"; };
 		169FB2B92124B3DE006D09BA /* MovieDataDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDataDecoder.swift; sourceTree = "<group>"; };
 		16A13C612125BB8800267875 /* MovieDBFacade.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDBFacade.swift; sourceTree = "<group>"; };
 		16AA2D04212F1B660083B430 /* InitialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialViewController.swift; sourceTree = "<group>"; };
@@ -114,6 +116,7 @@
 			children = (
 				16AA2D04212F1B660083B430 /* InitialViewController.swift */,
 				16D3315621348A2A00D0B1ED /* DetailViewController.swift */,
+				16791E15213ED07F00DCE188 /* DetailViewController2.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -374,6 +377,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				16A13C622125BB8800267875 /* MovieDBFacade.swift in Sources */,
+				16791E16213ED07F00DCE188 /* DetailViewController2.swift in Sources */,
 				169FB2BA2124B3DE006D09BA /* MovieDataDecoder.swift in Sources */,
 				16AA2D07212F3BEE0083B430 /* MovieListDelegate.swift in Sources */,
 				F50BD2AB1E37A41D008821F8 /* AppDelegate.swift in Sources */,
@@ -474,7 +478,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -525,7 +529,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -540,6 +544,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = TheMovieDB/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Globant.TheMovieDB;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -556,6 +561,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = TheMovieDB/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Globant.TheMovieDB;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -572,6 +578,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = TheMovieDBTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Globant.TheMovieDBTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -588,6 +595,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = TheMovieDBTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Globant.TheMovieDBTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";

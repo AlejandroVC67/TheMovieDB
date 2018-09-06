@@ -2,35 +2,38 @@
 //  TheMovieDBTests.swift
 //  TheMovieDBTests
 //
-//  Created by Jaime Laino on 1/24/17.
+//  Created by Alejandro Villa Cárdenas on 1/24/17.
 //  Copyright © 2017 Globant. All rights reserved.
 //
 
 import XCTest
+import Alamofire
 @testable import TheMovieDB
 
 class TheMovieDBTests: XCTestCase {
-    
-    override func setUp() {
-        super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+    let movie = Movie(json: Dictionary<String,Any>())
+    let topRated = TopRated(json: Dictionary<String,Any>())
+    func testMovieInitWithEmptyDictionary() {
+        XCTAssert(movie.title == "")
+        XCTAssert(movie.overview == "")
+        XCTAssert(movie.popularity == 0.0)
+        XCTAssert(movie.vote_average == 0.0)
+        XCTAssert(movie.poster_path == MovieDBFacade.kImagePlaceholder)
+        XCTAssert(movie.backdrop_path == MovieDBFacade.kImagePlaceholder)
     }
     
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-        super.tearDown()
+    func testTopRatedWithEmptyDictionary() {
+        XCTAssert(topRated.page == 0)
+        XCTAssert(topRated.total_pages == 0)
+        XCTAssert(topRated.total_results == 0)
+        XCTAssertEqual(topRated.results, [movie])
     }
     
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    func testDetailViewControllerWithEmptyMovie() {
+        let movieX: Movie?
+        let detailVC = TheMovieDB.DetailViewController()
+        // detailVC.movie = movie?
+        // print(detailVC.movie)
+        // XCTAssert(detailVC.movieOverviewLabel.text == "Not Available")
     }
-    
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
-    }
-    
 }

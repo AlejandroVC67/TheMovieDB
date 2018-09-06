@@ -15,7 +15,16 @@ class InitialViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        checkDevice()
+        setView()
+        retrieveTopRatedMovies()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        (self.list as! UIView).frame = self.view.bounds
+    }
+    
+    func checkDevice() {
         if UIDevice.current.userInterfaceIdiom == .pad {
             let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
             layout.sectionInset = UIEdgeInsetsMake(10, 1, 10, 1)
@@ -24,35 +33,23 @@ class InitialViewController: UIViewController {
         } else {
             self.list = TableMovieList()
         }
-        self.list.movieDelegate = self
-        self.view.addSubview((self.list as! UIView))
+    }
+    
+    func retrieveTopRatedMovies() {
         MovieDBFacade.retrieveTopRated { [weak self] response in
             self?.movies = response.results
             self?.list.reloadData()
         }
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        (self.list as! UIView).frame = self.view.bounds
+    func setView() {
+        self.list.movieDelegate = self
+        self.view.addSubview((self.list as! UIView))
     }
-    /*
-    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        // UITableView only moves in one direction, y axis
-        let currentOffset = scrollView.contentOffset.y
-        let maximumOffset = scrollView.contentSize.height - scrollView.frame.size.height
-        
-        // Change 10.0 to adjust the distance from bottom
-        if maximumOffset - currentOffset <= 20.0 {
-            MovieDBFacade.retrieveTopRated { [weak self] response in
-                self?.movies.append(contentsOf: response.results)
-                self?.list.reloadData()
-            }
-        }
-    } */
 }
 
 extension InitialViewController: MovieListDelegate {
-    func scroll() {
+    func didReachEnd() {
         MovieDBFacade.retrieveTopRated { [weak self] response in
             self?.movies.append(contentsOf: response.results)
             self?.list.reloadData()
@@ -69,10 +66,14 @@ extension InitialViewController: MovieListDelegate {
             cell.movieLabel?.text = movies[atIndexPath.item].title
         }
     }
-    func chooseACell(atIndexPath: IndexPath) {
+    func didSelectCell(atIndexPath: IndexPath) {
         let detailViewController = storyboard?.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
         detailViewController.movie = movies[atIndexPath.item]
-        self.navigationController!.pushViewController(detailViewController, animated: false)
+        self.navigationController!.pushViewController(detailViewController, animated: true)
+        /*
+        let detailViewController2 = storyboard?.instantiateViewController(withIdentifier: "DetailViewController2") as! DetailViewController2
+        detailViewController2.movie = movies[atIndexPath.item]
+        self.navigationController!.pushViewController(detailViewController2, animated: true) */
     }
     
 }

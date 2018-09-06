@@ -12,9 +12,9 @@ import AlamofireImage
 
 class MovieDBFacade {
     static var currentPage = 0
-    static private let kResults = "results"
-    static private let kImagesURL = "https://image.tmdb.org/t/p/w500"
-    
+    static let kResults = "results"
+    static let kImagesURL = "https://image.tmdb.org/t/p/w500"
+    static let kImagePlaceholder = "http://www.independentmediators.co.uk/wp-content/uploads/2016/02/placeholder-image.jpg"
     
     static func retrieveTopRated (completion: @escaping (TopRated) -> Void) {
         MovieDBFacade.currentPage = MovieDBFacade.currentPage + 1

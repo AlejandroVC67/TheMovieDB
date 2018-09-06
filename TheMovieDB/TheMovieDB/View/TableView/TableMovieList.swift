@@ -36,7 +36,7 @@ extension TableMovieList: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        movieDelegate?.chooseACell(atIndexPath: indexPath)
+        movieDelegate?.didSelectCell(atIndexPath: indexPath)
     }
     
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
@@ -45,7 +45,7 @@ extension TableMovieList: UITableViewDataSource, UITableViewDelegate {
         
         // Change 10.0 to adjust the distance from bottom
         if maximumOffset - currentOffset <= 10.0 {
-            movieDelegate?.scroll()
+            movieDelegate?.didReachEnd()
         }
     }
 }

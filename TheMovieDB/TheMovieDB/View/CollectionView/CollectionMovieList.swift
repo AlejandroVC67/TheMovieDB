@@ -38,7 +38,7 @@ extension CollectionMovieList: UICollectionViewDataSource, UICollectionViewDeleg
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        movieDelegate?.chooseACell(atIndexPath: indexPath)
+        movieDelegate?.didSelectCell(atIndexPath: indexPath)
     }
     
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
@@ -47,7 +47,7 @@ extension CollectionMovieList: UICollectionViewDataSource, UICollectionViewDeleg
         
         // Change 10.0 to adjust the distance from bottom
         if maximumOffset - currentOffset <= 10.0 {
-            movieDelegate?.scroll()
+            movieDelegate?.didReachEnd()
         }
     }
 }

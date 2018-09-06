@@ -12,8 +12,8 @@ import UIKit
 protocol MovieListDelegate: class {
     func numberOfItems() -> Int
     func configure(cell: ListCell, atIndexPath: IndexPath)
-    func chooseACell(atIndexPath: IndexPath)
-    func scroll()
+    func didSelectCell(atIndexPath: IndexPath)
+    func didReachEnd()
 }
 
 

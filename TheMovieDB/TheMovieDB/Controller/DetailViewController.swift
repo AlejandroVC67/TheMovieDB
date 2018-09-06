@@ -19,7 +19,6 @@ class DetailViewController: UIViewController {
     var movie: Movie?
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = movie?.title
         movieTitleLabel.text = movie?.title
         movieImage.af_setImage(withURL: URL(string: (movie?.backdrop_path)!)!)
         moviePopularityLabel.text = "Popularity: \(movie?.popularity ?? 00)"
