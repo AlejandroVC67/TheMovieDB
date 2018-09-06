@@ -36,7 +36,7 @@ class InitialViewController: UIViewController {
     }
     
     func retrieveTopRatedMovies() {
-        MovieDBFacade.retrieveTopRated { [weak self] response in
+        MovieDBFacade.retrieveTopRated { [weak self] (response, error) in
             self?.movies = response.results
             self?.list.reloadData()
         }
@@ -50,7 +50,7 @@ class InitialViewController: UIViewController {
 
 extension InitialViewController: MovieListDelegate {
     func didReachEnd() {
-        MovieDBFacade.retrieveTopRated { [weak self] response in
+        MovieDBFacade.retrieveTopRated { [weak self] (response, error) in
             self?.movies.append(contentsOf: response.results)
             self?.list.reloadData()
         }

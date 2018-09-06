@@ -1,21 +1,28 @@
 //
-//  TheMovieDBTests.swift
+//  MovieDBDecoderTests.swift
 //  TheMovieDBTests
 //
-//  Created by Alejandro Villa Cárdenas on 1/24/17.
-//  Copyright © 2017 Globant. All rights reserved.
+//  Created by Diego Alejandro Villa Cardenas on 9/6/18.
+//  Copyright © 2018 Globant. All rights reserved.
 //
 
 import XCTest
 import Alamofire
 @testable import TheMovieDB
 
-class TheMovieDBTests: XCTestCase {
+class MovieDBDecoderTests: XCTestCase {
+    
     let movie = Movie(json: Dictionary<String,Any>())
     let topRated = TopRated(json: Dictionary<String,Any>())
+    
+    override func setUp() {
+        super.setUp()
+        // Put setup code here. This method is called before the invocation of each test method in the class.
+    }
+    
     func testMovieInitWithEmptyDictionary() {
-        XCTAssert(movie.title == "")
-        XCTAssert(movie.overview == "")
+        XCTAssert(movie.title == "Not Available")
+        XCTAssert(movie.overview == "Not Available")
         XCTAssert(movie.popularity == 0.0)
         XCTAssert(movie.vote_average == 0.0)
         XCTAssert(movie.poster_path == MovieDBFacade.kImagePlaceholder)
@@ -29,11 +36,4 @@ class TheMovieDBTests: XCTestCase {
         XCTAssertEqual(topRated.results, [movie])
     }
     
-    func testDetailViewControllerWithEmptyMovie() {
-        let movieX: Movie?
-        let detailVC = TheMovieDB.DetailViewController()
-        // detailVC.movie = movie?
-        // print(detailVC.movie)
-        // XCTAssert(detailVC.movieOverviewLabel.text == "Not Available")
-    }
 }

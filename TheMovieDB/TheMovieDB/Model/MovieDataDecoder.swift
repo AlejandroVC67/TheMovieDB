@@ -21,12 +21,12 @@ struct Movie {
         let posterPath = json["poster_path"] != nil ? MovieDBFacade.kImagesURL + String(describing: json["poster_path"]!) : MovieDBFacade.kImagePlaceholder
         let backdropPath = json["backdrop_path"] != nil ? MovieDBFacade.kImagesURL + String(describing: json["backdrop_path"]!) : MovieDBFacade.kImagePlaceholder
         self.vote_average = json["vote_average"] as? Double ?? 0.0
-        self.title = json["title"] as? String ?? ""
+        self.title = json["title"] as? String ?? "Not Available"
         self.popularity = json["popularity"] as? Double ?? 0.0
         self.poster_path = posterPath // String(describing: json["poster_path"]!)
         self.backdrop_path = backdropPath // String(describing: json["backdrop_path"]!)
-        self.overview = json["overview"] as? String ?? ""
-        self.release_date = json["release_date"] as? String ?? ""
+        self.overview = json["overview"] as? String ?? "Not Available"
+        self.release_date = json["release_date"] as? String ?? "Not Available"
     }
 }
 
@@ -59,6 +59,16 @@ struct TopRated {
             movies = [Movie(json: Dictionary<String,Any>())]
         }
         self.results = movies
+    }
+}
+
+extension TopRated: Equatable {
+    static func == (lhs: TopRated, rhs: TopRated) -> Bool {
+        return
+            lhs.page == rhs.page &&
+                lhs.total_results == rhs.total_results &&
+                lhs.total_pages == rhs.total_pages &&
+                lhs.results == rhs.results
     }
 }
 

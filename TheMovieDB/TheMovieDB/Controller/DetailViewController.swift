@@ -16,13 +16,24 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var moviePopularityLabel: UILabel!
     @IBOutlet weak var movieReleaseLabel: UILabel!
     @IBOutlet weak var movieOverviewLabel: UILabel!
-    var movie: Movie?
+    var movie: Movie!
     override func viewDidLoad() {
         super.viewDidLoad()
+        setComponentsValues()
+        /*
         movieTitleLabel.text = movie?.title
         movieImage.af_setImage(withURL: URL(string: (movie?.backdrop_path)!)!)
         moviePopularityLabel.text = "Popularity: \(movie?.popularity ?? 00)"
-        movieReleaseLabel.text = "Release date: \(movie?.release_date ?? "Not Available")"
-        movieOverviewLabel.text = "\(movie?.overview ?? "Not Available")"
+        movieReleaseLabel.text = "Release date: \(movie?.release_date ?? ""))"
+        movieOverviewLabel.text = "\(movie?.overview ?? ""))" */
+    }
+
+    func setComponentsValues() {
+        movieTitleLabel.text = movie.title
+        movieImage.af_setImage(withURL: URL(string: (movie.backdrop_path)!)!)
+        moviePopularityLabel.text = "Popularity: \(movie.popularity)"
+        movieReleaseLabel.text = "Release date: \(movie.release_date))"
+        movieOverviewLabel.text = "\(movie.overview))"
+
     }
 }
